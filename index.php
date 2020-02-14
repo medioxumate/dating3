@@ -2,11 +2,11 @@
 /**
  * Created in PhpStorm
  * @author Brian Kiehn
- * @date 1/27/2020
- * @version 2.0
+ * @date 2/13/2020
+ * @version 3.0
  * index.php
- * https://github.com/medioxumate/dating2b.git
  * GreenRiverDev
+ * @link https://github.com/medioxumate/dating2b.git
  */
 
 //Session

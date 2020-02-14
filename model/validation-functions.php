@@ -2,11 +2,11 @@
 /**
  * Created in PhpStorm
  * @author Brian Kiehn
- * @date 1/28/2020
- * @version 1.0
+ * @date 2/13/2020
+ * @version 2.0
  * validation-functions.php
- * https://github.com/medioxumate/dating2b.git
  * GreenRiverDev
+ * @link https://github.com/medioxumate/dating3.git
  */
 
 //functions
@@ -14,7 +14,7 @@
  * @param $String
  * @return bool
  */
-function validName($String){
+function validString($String){
     return ctype_alpha($String) AND ($String !="");
 }
 
