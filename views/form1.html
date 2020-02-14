@@ -1,0 +1,91 @@
+<!--
+ * Created in PhpStorm
+ * @author Brian Kiehn
+ * @date 1/27/2020
+ * @version 3.0
+ * form1.html
+ * https://github.com/medioxumate/dating2b.git
+ * GreenRiverDev
+ -->
+<include href="views/header.html">
+    <!-- main body -->
+    <section class ="container-fluid">
+        <form method ="Post" action ="#">
+            <div class ="card">
+                <div class="card-header">
+                    <h1>Personal Information</h1>
+                </div><!--end card-header-->
+                <div class ="card-body">
+                    <div class="row"><!--row-->
+                        <div class="col-7"><!-- col-7 (column 1)-->
+                            <div class ="row"><!--row 1-->
+                                <div class ="col form-group">
+                                    <label><b>First Name</b></label>
+                                    <input class = "form-control" type ="text" name ="fn" value ={{@fn}}>
+                                    <p class="alert-danger">{{@errors[fn]}}</p>
+                                </div>
+                            </div><!-- end row 1-->
+
+                            <div class="row"><!--row 2-->
+                                <div class ="col form-group">
+                                    <label><b>Last Name</b></label>
+                                    <input class = "form-control" type ="text" name ="ln" value ={{@ln}}>
+                                    <p class="alert-danger">{{@errors[ln]}}</p>
+                                </div>
+                            </div><!--end row 2-->
+
+                            <div class="row"><!--row 3-->
+                                <div class ="col form-group">
+                                    <label><b>Age</b></label>
+                                    <input class = "form-control" type ="text" name ="age" value ={{@age}}>
+                                    <p class="alert-danger">{{@errors[age]}}</p>
+                                </div>
+                            </div><!--end row 3-->
+
+                            <div class ="row"><!--row 4-->
+                                <div class="col form-group">
+                                    <label><b>Gender: </b><em>*Optional</em></label><br>
+                                        <input type ="radio" name ="g" id ="m" value="Male"><label for ="m">Male</label>
+                                        <input type ="radio" name ="g" id ="f" value ="Female"><label for ="f">Female</label>
+                                        <input type ="radio" name ="g" id ="b" value ="Both"><label for ="b">Both</label>
+                                        <input type ="radio" name ="g" id ="o" value ="Other"><label for ="o">Other</label>
+                                </div>
+                            </div><!--end row 4-->
+
+                            <div class ="row"><!--row 5-->
+                                <div class="col form-group">
+                                    <label><b>Phone Number</b></label>
+                                    <input class = "form-control" type ="text" name ="ph" value ={{@ph}}>
+                                    <p class="alert-danger">{{@errors[ph]}}</p>
+                                </div>
+                            </div><!--end row 5-->
+                        </div><!-- end col-7 (column 1)-->
+
+                        <div class="col"><!-- col (column 2)-->
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <br>
+                                    <div class="card alert alert-info">
+                                        <b>Disclaimer: </b> All information is protected by our privacy policy.
+                                        Profile information can only be viewed by others by the user's request.
+                                        No government spies here!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--end of card-body-->
+
+                <div class ="card-footer">
+                    <div class="row justify-content-end">
+                        <div class="col offset-10">
+                            <button type ="submit">Next</button>
+                            <button type ="reset">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

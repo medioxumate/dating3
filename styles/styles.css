@@ -1,0 +1,47 @@
+/**
+ * Created in PhpStorm
+ * @author Brian Kiehn
+ * @date 1/15/2020
+ * @version 1.0
+ * styles.css
+ * https://github.com/medioxumate/dating2.git
+ * GreenRiverDev
+ */
+
+/*Tags*/
+body{
+    background-color: #7abaff;
+}
+
+nav{
+    width: 100%;
+}
+
+/*Classes*/
+.nav {
+    background: #545b62 !important;
+}
+
+.link{
+    padding: 5% !important;
+}
+
+.navbar-header{
+    padding-left: 3% !important;
+}
+
+.card-header {
+    background-color: #0069d9;
+}
+
+.card-body {
+    background-color: aliceblue;
+}
+
+.card-footer {
+    background-color: #7abaff;
+}
+
+.card {
+    border-color: #7abaff;
+}

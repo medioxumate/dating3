@@ -1,0 +1,58 @@
+<!--
+ * Created in PhpStorm
+ * @author Brian Kiehn
+ * @date 1/27/2020
+ * @version 2.0
+ * form3.html
+ * https://github.com/medioxumate/dating2b.git
+ * GreenRiverDev
+ -->
+<include href="views/header.html">
+    <section class ="container-fluid">
+        <form method ="Post" action ="profile">
+            <div class ="card">
+                <div class="card-header">
+                    <h1>Interests</h1>
+                </div><!--end card-header-->
+                <div class ="card-body">
+                    <div class="row"><!--row 1-->
+                        <div class="col form-group">
+                            <p><b>In-door Interests</b> <em>*Optional</em></p>
+                            <div class ="row justify-content-around">
+                                    <repeat group="{{ @in }}" value="{{ @inOption }}">
+                                        <div class="col-3">
+                                            <label><input type="checkbox" name="in[]" value="{{ @inOption }}">
+                                                {{ @inOption }}</label>
+                                        </div>
+                                    </repeat>
+                                </div>
+                            </div>
+                        </div><!--end row 1-->
+
+                    <div class="row"><!--row 2-->
+                        <div class="col form-group">
+                            <p><b>Out-door Interests</b> <em>*Optional</em></p>
+                            <div class ="row justify-content-around">
+                                <repeat group="{{ @out }}" value="{{ @outOption }}">
+                                    <div class="col-3">
+                                        <label><input type="checkbox" name="out[]" value="{{ @outOption }}">{{ @outOption }}
+                                        </label>
+                                    </div>
+                                </repeat>
+                            </div>
+                        </div>
+                    </div><!-- end row 2-->
+                </div>
+                <div class ="card-footer">
+                    <div class="row justify-content-end">
+                        <div class="col offset-10">
+                            <button type ="submit">Next</button>
+                            <button type ="reset">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

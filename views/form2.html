@@ -1,0 +1,80 @@
+<!--
+ * Created in PhpStorm
+ * @author Brian Kiehn
+ * @date 1/27/2020
+ * @version 2.0
+ * form2.html
+ * https://github.com/medioxumate/dating2b.git
+ * GreenRiverDev
+ -->
+<include href="views/header.html">
+    <section class ="container-fluid">
+        <form method ="Post" action ="#">
+            <div class ="card">
+                <div class="card-header">
+                    <h1>Personal Information</h1>
+                </div><!--end card-header-->
+            <div class ="card-body">
+                <div class="row">
+                    <div class="col-7"><!--col-7 (column 1)-->
+                        <div class ="row"><!--row 1-->
+                            <div class ="col form-group">
+                                <label><b>Email</b></label>
+                                <input class = "form-control" type ="text" name ="em" value ={{@em}}>
+                                <p class="alert-danger">{{@errors[em]}}</p>
+                            </div>
+                        </div><!--end row 1-->
+
+                        <div class="row"><!--row 2-->
+                            <div class ="col form-group">
+                                <label><b>State</b>
+                                    <select class="form-control" name='st'>
+                                        <option>Pick a State</option>
+                                        <repeat group="{{ @states }}" value="{{ @stateChoices }}">
+                                            <option>{{ @stateChoices }}</option>
+                                        </repeat>
+                                    </select>
+                                    <p class="alert-danger">{{@errors[st]}}</p>
+                                </label>
+                            </div>
+                        </div><!--end row 2-->
+
+                        <div class ="row"><!--row 3-->
+                            <div class="col form-group">
+                                <br>
+                                <label><b>Seeking: </b><em>*Optional</em></label><br>
+                                    <input type ="radio" name ="sk" id ="m" value="Male"><label for ="m">Male</label>
+                                    <input type ="radio" name ="sk" id ="f" value ="Female"><label for ="f">Female</label>
+                                    <input type ="radio" name ="sk" id ="b" value ="Either Or"><label for ="b">Both</label>
+                                    <input type ="radio" name ="sk" id ="o" value ="Other"><label for ="o">Other</label>
+                            </div>
+                        </div><!--end row 3-->
+                    </div><!--end col-7 (column 1)-->
+                        <div class="col"><!--col column 2-->
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <br>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <label><b>Biography</b> <em>*Optional</em></label>
+                                            <textarea class="form-control" name ="bio" rows="10" cols="60">{{@bio}}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--end column 2-->
+                    </div>
+                </div><!--end of card-body-->
+                <div class ="card-footer">
+                    <div class="row justify-content-end">
+                        <div class="col offset-10">
+                            <button type ="submit">Next</button>
+                            <button type ="reset">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</body>
+</html>
