@@ -19,13 +19,14 @@
                         <div class="card">
                             <div class = "card-body">
                                 <ul class ="list-group list-group-flush">
-                                    <li class="list-group-item">Name: {{@SESSION.fn}} {{@SESSION.ln}}</li>
-                                    <li class ="list-group-item">Gender: {{@SESSION.g}}</li>
-                                    <li class ="list-group-item">Age: {{@SESSION.age}}</li>
-                                    <li class ="list-group-item">Phone: {{@SESSION.ph}}</li>
-                                    <li class ="list-group-item">Email: {{@SESSION.em}}</li>
-                                    <li class ="list-group-item">State: {{@SESSION.st}}</li>
-                                    <li class ="list-group-item">Seeking: {{@SESSION.sk}}</li>
+                                    <li class="list-group-item">Name: {{@SESSION.member->getFname()}}
+                                        {{@SESSION.member->getLname()}}</li>
+                                    <li class ="list-group-item">Gender: {{@SESSION.member->getGender()}}</li>
+                                    <li class ="list-group-item">Age: {{@SESSION.member->getAge()}}</li>
+                                    <li class ="list-group-item">Phone: {{@SESSION.member->getPhone()}}</li>
+                                    <li class ="list-group-item">Email: {{@SESSION.member->getEmail()}}</li>
+                                    <li class ="list-group-item">State: {{@SESSION.member->getState()}}</li>
+                                    <li class ="list-group-item">Seeking: {{@SESSION.member->getSeeking()}}</li>
                                     <li class ="list-group-item">Interests: {{@SESSION.hob}}</li>
                                 </ul>
                             </div>
@@ -41,7 +42,7 @@
                 <div class ="row"><!-- row 2-->
                     <div class="col offset-6">
                         <h5 class="card-title">Biography: </h5>
-                        <p class ="card-text"> {{@SESSION.bio}} </p><br><br>
+                        <p class ="card-text"> {{@SESSION.member->getBio()}} </p><br><br>
                     </div>
                 </div><!-- end row 2-->
 

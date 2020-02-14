@@ -118,7 +118,7 @@ class member
     }
 
     /**
-     * @param mixed $age
+     * @param int $age
      */
     public function setAge($age){
         $this->_age = $age;

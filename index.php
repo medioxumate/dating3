@@ -9,9 +9,6 @@
  * @link https://github.com/medioxumate/dating2b.git
  */
 
-//Session
-session_start();
-
 //Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -20,6 +17,9 @@ error_reporting(E_ALL);
 require_once('vendor/autoload.php');
 //Require validation functions
 require('model/validation-functions.php');
+
+//Session
+session_start();
 
 //Create an instance of the Base class
 $f3 = Base::instance();
@@ -67,7 +67,7 @@ $f3->route('GET /', function($f3){
 //Form routes
 
 //First form 'Sign-up'
-$f3->route('GET|POST /sign-up', function($f3) {
+$f3->route('GET|POST /Sign-up', function($f3) {
     $f3->set('title', 'Sign up');
 
     //display a views
@@ -81,15 +81,11 @@ $f3->route('GET|POST /sign-up', function($f3) {
         if (validAge($_POST['age']) && validString($_POST['fn'])
             && validString($_POST['ln'])&& validPhone($_POST['ph'])) {
 
-            $_SESSION ['fn'] = $_POST['fn'];
-            $_SESSION ['ln'] = $_POST['ln'];
-            $_SESSION ['age'] = $_POST['age'];
-            $_SESSION ['ph'] = $_POST['ph'];
             if(!isset($_POST['g'])){
-                $_SESSION ['g'] = $f3->get('opt');
+                $_SESSION ['member'] = new member($_POST['fn'], $_POST['ln'], $_POST['age'], $_POST['ph']);
             }
             else{
-                $_SESSION ['g'] = $_POST['g'];
+                $_SESSION ['member'] = new member($_POST['fn'], $_POST['ln'], $_POST['age'], $_POST['ph'], $_POST['g']);
             }
 
             $f3->reroute('/bio');
@@ -113,6 +109,9 @@ $f3->route('GET|POST /sign-up', function($f3) {
             $f3->set('ln', $_POST['ln']);
             $f3->set('age', $_POST['age']);
             $f3->set('ph', $_POST['ph']);
+            if(isset($_POST['g'])){
+                $f3->set('g', $_POST['g']);
+            }
         }
     }
     echo $view->render('views/form1.html');
@@ -129,21 +128,21 @@ $f3->route('GET|POST /bio', function($f3) {
         //check valid strings and numbers
         if (validEmail($_POST['em']) && validState($f3->get('states'), $_POST['st'])) {
 
-            $_SESSION ['em'] = $_POST['em'];
-            $_SESSION ['st'] = $_POST['st'];
+            $_SESSION ['member']->setEmail($_POST['em']);
+            $_SESSION ['member']->setState($_POST['st']);
 
             if(!isset($_POST['sk'])){
-                $_SESSION ['sk'] = $f3->get('opt');
+                $_SESSION ['member']->setSeeking($f3->get('opt'));
             }
             else{
-                $_SESSION ['sk'] = $_POST['sk'];
+                $_SESSION ['member']->setSeeking($_POST['sk']);
             }
 
             if($_POST['bio'] != '' || $_POST['bio'] != ' '){
-                $_SESSION ['bio'] = $f3->get('opt');
+                $_SESSION ['member']->setBio($f3->get('opt'));
             }
             else{
-                $_SESSION ['bio'] = $_POST['bio'];
+                $_SESSION ['member']->setBio($_POST['bio']);
             }
 
             $f3->reroute('/hobbies');
