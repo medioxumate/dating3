@@ -21,7 +21,13 @@
                             <div class ="col form-group">
                                 <label><b>Email</b></label>
                                 <input class = "form-control" type ="text" name ="em" value ={{@em}}>
-                                <p class="alert-danger">{{@errors[em]}}</p>
+                                <check if="{{ @errors['em'] =='' }}">
+                                    <false>
+                                        <div class="alert alert-danger" role="alert">
+                                            *email field is empty or invalid. ex: someonecool@domain.com
+                                        </div>
+                                    </false>
+                                </check>
                             </div>
                         </div><!--end row 1-->
 
@@ -34,7 +40,13 @@
                                             <option>{{ @stateChoices }}</option>
                                         </repeat>
                                     </select>
-                                    <p class="alert-danger">{{@errors[st]}}</p>
+                                    <check if="{{ @errors['st'] =='' }}">
+                                        <false>
+                                            <div class="alert alert-danger" role="alert">
+                                                *state field is empty or invalid.
+                                            </div>
+                                        </false>
+                                    </check>
                                 </label>
                             </div>
                         </div><!--end row 2-->

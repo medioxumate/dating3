@@ -97,40 +97,17 @@ $f3->route('GET|POST /hobbies', function($f3) {
 
     $f3->set('title', 'hobbies');
 
+    $GLOBALS['controller']->form3($f3);
+
     $view = new Template();
     echo $view->render('views/form3.html');
 });
 
-$f3->route('POST /profile', function($f3) {
+$f3->route('GET /profile', function($f3) {
 
     $f3->set('title', 'profile');
 
-    $string ='';
-    if(isset($_POST['in'])||isset($_POST['out'])) {
-        if (isset($_POST['in'])) {
-            if (validHobby($_POST['in'], $f3->get('in'))) {
-                foreach ($_POST['in'] as $in){
-                    $string .= $in;
-                    $string .= ', ';
-                }
-            }
-        }
-        if (isset($_POST['out'])) {
-            if (validHobby($_POST['out'], $f3->get('out'))) {
-                foreach ($_POST['out'] as $out){
-                    $string .= $out;
-                    $string .= ', ';
-                }
-            }
-        }
-        $length = strlen($string);
-        $string = substr($string, 0, $length-2);
-    }
-    else{
-        $string = $f3->get('opt');
-    }
-
-    $_SESSION['hob'] = $string;
+    $GLOBALS['controller']->profile($f3);
 
     $view = new Template();
     echo $view->render('views/profile.html');

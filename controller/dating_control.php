@@ -10,7 +10,7 @@
  */
 
 //Require validation functions
-require('../model/validation-functions.php');
+require('model/validation-functions.php');
 
 class dating_control
 {
@@ -107,18 +107,71 @@ class dating_control
                     $_SESSION ['member']->setBio($_POST['bio']);
                 }
 
-                $f3->reroute('/hobbies');
+                if ($_SESSION ['member'] instanceof premium_member) {
+                    $f3->reroute('/hobbies');
+                }
+                else{
+                    $f3->reroute('/profile');
+                }
             }
             else
             {
                 //instantiate an error array with message
                 if(!validEmail($_POST['em'])){
-                    $f3->set("errors['em']", "*email field is empty or invalid. ex: someonecool@domain.com");
+                    $f3->set("errors['em']", "true");
                 }
                 if(!validState($f3->get('states'), $_POST['st'])){
-                    $f3->set("errors['st']", "*state field is empty or invalid.");
+                    $f3->set("errors['st']", "true");
                 }
             }
+        }
+    }
+
+    public function form3($f3){
+        //check if $POST even exists, then validate
+        if (isset($_POST['in']) || isset($_POST['out'])) {
+            if (isset($_POST['in'])) {
+                if (validHobby($_POST['in'], $f3->get('in'))) {
+                    $_SESSION['member']->addHobby($_POST['in'], $_SESSION['member']->getIndoorInterests());
+                }
+                else{
+                    $f3->set("errors['in']", "true");
+                }
+            }
+            if (isset($_POST['out'])) {
+                if (validHobby($_POST['out'], $f3->get('out'))) {
+                    $_SESSION['member']->addHobby($_POST['out'], $_SESSION['member']->getOutdoorInterests());
+                }
+                else{
+                    $f3->set("errors['out']", "true");
+                }
+            }
+            if($f3->get("errors['in']") != '' && $f3->get("errors['out']") != ''){
+                $f3->reroute('/profile');
+            }
+        }
+        else{
+            $f3->reroute('/profile');
+        }
+    }
+
+    public function profile($f3){
+        if($_SESSION['member'] instanceof premium_member) {
+            $in = $_SESSION['member']->getIndoorInterests();
+            $out = $_SESSION['member']->getOutdoorInterests();
+
+            $inString = $_SESSION['member']->hobbyToString($in);
+            $outString = $_SESSION['member']->hobbyToString($out);
+
+            $hobbies = '';
+            $hobbies .= $inString;
+            $hobbies .= "<br>";
+            $hobbies .= $outString;
+
+            $_SESSION['hob'] = $hobbies;
+        }
+        else{
+            $_SESSION['hob'] = $f3->get('opt');
         }
     }
 
