@@ -21,7 +21,10 @@
                             <div class ="row justify-content-around">
                                     <repeat group="{{ @in }}" value="{{ @inOption }}">
                                         <div class="col-3">
-                                            <label><input type="checkbox" name="in[]" value="{{ @inOption }}">
+                                            <label><input type="checkbox" name="in[]" value="{{ @inOption }}"
+                                                <check if="{{ !empty(@in) && in_array(@inOption, @in) }}">
+                                                    checked="checked"
+                                                </check>>
                                                 {{ @inOption }}</label>
                                         </div>
                                     </repeat>
@@ -35,7 +38,11 @@
                             <div class ="row justify-content-around">
                                 <repeat group="{{ @out }}" value="{{ @outOption }}">
                                     <div class="col-3">
-                                        <label><input type="checkbox" name="out[]" value="{{ @outOption }}">{{ @outOption }}
+                                        <label><input type="checkbox" name="out[]" value="{{ @outOption }}"
+                                            <check if="{{ !empty(@out) && in_array(@outOption, @out) }}">
+                                                checked="checked"
+                                            </check>>
+                                            {{ @outOption }}
                                         </label>
                                     </div>
                                 </repeat>

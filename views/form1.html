@@ -22,7 +22,13 @@
                                 <div class ="col form-group">
                                     <label><b>First Name</b></label>
                                     <input class = "form-control" type ="text" name ="fn" value ={{@fn}}>
-                                    <p class="alert-danger">{{@errors[fn]}}</p>
+                                    <check if="{{ @errors['fn'] =='' }}">
+                                        <false>
+                                            <div class="alert alert-danger" role="alert">
+                                                *First name field is empty or invalid.
+                                            </div>
+                                        </false>
+                                    </check>
                                 </div>
                             </div><!-- end row 1-->
 
@@ -30,7 +36,13 @@
                                 <div class ="col form-group">
                                     <label><b>Last Name</b></label>
                                     <input class = "form-control" type ="text" name ="ln" value ={{@ln}}>
-                                    <p class="alert-danger">{{@errors[ln]}}</p>
+                                    <check if="{{ @errors['ln'] =='' }}">
+                                        <false>
+                                            <div class="alert alert-danger" role="alert">
+                                                *Last name field is empty or invalid.
+                                            </div>
+                                        </false>
+                                    </check>
                                 </div>
                             </div><!--end row 2-->
 
@@ -38,7 +50,13 @@
                                 <div class ="col form-group">
                                     <label><b>Age</b></label>
                                     <input class = "form-control" type ="text" name ="age" value ={{@age}}>
-                                    <p class="alert-danger">{{@errors[age]}}</p>
+                                    <check if="{{ @errors['age'] =='' }}">
+                                        <false>
+                                            <div class="alert alert-danger" role="alert">
+                                                *Age field is empty or invalid. Age should be between 18 and 118.
+                                            </div>
+                                        </false>
+                                    </check>
                                 </div>
                             </div><!--end row 3-->
 
@@ -56,14 +74,23 @@
                                 <div class="col form-group">
                                     <label><b>Phone Number</b></label>
                                     <input class = "form-control" type ="text" name ="ph" value ={{@ph}}>
-                                    <p class="alert-danger">{{@errors[ph]}}</p>
+                                    <check if="{{ @errors['ph'] =='' }}">
+                                        <false>
+                                            <div class="alert alert-danger" role="alert">
+                                                *invalid phone number. ex: 999-999-9999
+                                            </div>
+                                        </false>
+                                    </check>
                                 </div>
                             </div><!--end row 5-->
 
                             <div class ="row"><!--row 6-->
                                 <div class="col-12 form-group">
                                     <h6><b>Premium Membership</b></h6>
-                                    <label><input type ="checkbox" name ="pm" value ="pm"> Sign me Up!</label>
+                                    <label><input type ="checkbox" name ="pm" value ="pm"
+                                        <check if="{{ !empty(@pm) }}">
+                                            checked="checked"
+                                        </check>> Sign me Up!</label>
                                 </div>
                             </div><!--end row 6-->
                         </div><!-- end col-7 (column 1)-->

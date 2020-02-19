@@ -50,6 +50,8 @@ $f3->set('fn', '');
 $f3->set('ln', '');
 $f3->set('age', '');
 $f3->set('ph', '');
+$f3->set('g', '');
+$f3->set('pm', '');
 $f3->set('em', '');
 
 //if missing an optional field
@@ -81,11 +83,21 @@ $f3->route('GET|POST /Sign-up', function($f3) {
         if (validAge($_POST['age']) && validString($_POST['fn'])
             && validString($_POST['ln'])&& validPhone($_POST['ph'])) {
 
-            if(!isset($_POST['g'])){
-                $_SESSION ['member'] = new member($_POST['fn'], $_POST['ln'], $_POST['age'], $_POST['ph']);
+            if(!isset($_POST['g'])) {
+                if (isset($_POST['pm'])) {
+                    $_SESSION ['member'] = new premium_member($_POST['fn'], $_POST['ln'], $_POST['age'], $_POST['ph']);
+                } else {
+                    $_SESSION ['member'] = new member($_POST['fn'], $_POST['ln'], $_POST['age'], $_POST['ph']);
+                }
             }
-            else{
-                $_SESSION ['member'] = new member($_POST['fn'], $_POST['ln'], $_POST['age'], $_POST['ph'], $_POST['g']);
+            else {
+                if (isset($_POST['pm'])) {
+                    $_SESSION ['member'] = new premium_member($_POST['fn'], $_POST['ln'], $_POST['age'], $_POST['ph'],
+                        $_POST['g']);
+                } else {
+                    $_SESSION ['member'] = new member($_POST['fn'], $_POST['ln'], $_POST['age'], $_POST['ph'],
+                        $_POST['g']);
+                }
             }
 
             $f3->reroute('/bio');
@@ -94,21 +106,24 @@ $f3->route('GET|POST /Sign-up', function($f3) {
         {
             //instantiate an error array with message
             if(!validString($_POST['fn'])){
-                $f3->set("errors['fn']", "*First name field is empty or invalid.");
+                $f3->set("errors['fn']", "true");
             }
             if(!validString($_POST['ln'])){
-                $f3->set("errors['ln']", "*Last name field is empty or invalid.");
+                $f3->set("errors['ln']", "true");
             }
             if(!validAge($_POST['age'])){
-                $f3->set("errors['age']", "*Age field is empty or invalid. Age should be between 18 and 118.");
+                $f3->set("errors['age']", "true");
             }
             if(!validPhone($_POST['ph'])){
-                $f3->set("errors['ph']", "*invalid phone number. ex: 999-999-9999");
+                $f3->set("errors['ph']", "true");
             }
             $f3->set('fn', $_POST['fn']);
             $f3->set('ln', $_POST['ln']);
             $f3->set('age', $_POST['age']);
             $f3->set('ph', $_POST['ph']);
+            if(isset($_POST['pm'])){
+                $f3->set('pm', $_POST['pm']);
+            }
             if(isset($_POST['g'])){
                 $f3->set('g', $_POST['g']);
             }

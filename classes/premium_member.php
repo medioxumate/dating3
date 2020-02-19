@@ -14,7 +14,88 @@ class premium_member extends member
     private $_inDoorInterests;
     private $_outDoorInterests;
 
+    /**
+     * premium_member constructor.
+     * @param $fname - first name
+     * @param $lname - last name
+     * @param $age - age
+     * @param $phone - phone number
+     * @param string $gender - gender
+     * @param array $_inDoorInterests - array of indoor interests
+     * @param array $_outDoorInterests - array of outdoor interests
+     */
+    public function __construct($fname, $lname, $age, $phone, $gender  = "Not Given", $_inDoorInterests = array(),
+                                $_outDoorInterests = array())
+    {
+        parent::__construct($fname, $lname, $age, $phone, $gender);
+        $this->_inDoorInterests = $_inDoorInterests;
+        $this->_outDoorInterests = $_outDoorInterests;
+    }
+
     //getters
+    /**
+     * @return string
+     */
+    public function getFname(){
+        return parent::getFname();
+    }
+
+    /**
+     * @return string
+     */
+    public function getLname(){
+        return parent::getLname();
+    }
+
+    /**
+     * @return int
+     */
+    public function getAge(){
+        return parent::getAge();
+    }
+
+    /**
+     * @return string
+     */
+    public function getGender(){
+        return parent::getGender();
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone(){
+        return parent::getPhone();
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(){
+        return parent::getEmail();
+    }
+
+    /**
+     * @return string
+     */
+    public function getState(){
+        return parent::getState();
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeeking(){
+        return parent::getSeeking();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBio(){
+        return parent::getBio();
+    }
+
     /**
      * @return array
      */
@@ -30,6 +111,69 @@ class premium_member extends member
     }
 
     //setters
+    /**
+     * @param string $fname
+     */
+    public function setFname($fname){
+        parent::setFname($fname);
+    }
+
+    /**
+     * @param string $lname
+     */
+    public function setLname($lname){
+        parent::setLname($lname);
+    }
+
+    /**
+     * @param int $age
+     */
+    public function setAge($age){
+        parent::setAge($age);
+    }
+
+    /**
+     * @param string $gender
+     */
+    public function setGender($gender){
+        parent::setGender($gender);
+    }
+
+    /**
+     * @param mixed $phone
+     */
+    public function setPhone($phone){
+        parent::setPhone($phone);
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email){
+        parent::setEmail($email);
+    }
+
+    /**
+     * @param string $state
+     */
+    public function setState($state){
+        parent::setState($state);
+    }
+
+    /**
+     * @param string $seeking
+     */
+    public function setSeeking($seeking){
+        parent::setSeeking($seeking);
+    }
+
+    /**
+     * @param string $bio
+     */
+    public function setBio($bio){
+        parent::setBio($bio);
+    }
+
     /**
      * @param array $inDoorInterests
      */
