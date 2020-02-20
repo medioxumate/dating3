@@ -188,21 +188,12 @@ class premium_member extends member
         $this->_outdoorInterests = $outdoorInterests;
     }
 
-    //add elements to an array
-    /**
-     * @param $query - the element to be added
-     * @param array $hobby - the array
-     * @return int
-     */
-    public function addHobby($query, array $hobby){
-        $size = sizeof($hobby);
-        return $size < array_push($hobby, $query);
-    }
 
-    public function hobbyToString(array $intrests){
+    //Helper methods
+    public function hobbyToString(array $interests){
         $string ='';
 
-        foreach ($intrests as $hobby){
+        foreach ($interests as $hobby){
             $string .= $hobby;
             $string .= ', ';
         }
@@ -213,4 +204,15 @@ class premium_member extends member
         return $string;
     }
 
+    public function addInElement($element){
+        $indoor = $this->getIndoorInterests();
+        array_push($indoor, $element);
+        $this->setIndoorInterests($indoor);
+    }
+
+    public function addOutElement($element){
+        $outdoor = $this->getOutdoorInterests();
+        array_push($outdoor, $element);
+        $this->setOutdoorInterests($outdoor);
+    }
 }

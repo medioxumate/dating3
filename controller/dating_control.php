@@ -35,56 +35,51 @@ class dating_control
             if (validAge($_POST['age']) && validString($_POST['fn'])
                 && validString($_POST['ln'])&& validPhone($_POST['ph'])) {
 
-                if(!isset($_POST['g'])) {
-                    if (isset($_POST['pm'])) {
-                        $_SESSION ['member'] = new premium_member($_POST['fn'], $_POST['ln'], $_POST['age'], $_POST['ph']);
-                    } else {
-                        $_SESSION ['member'] = new member($_POST['fn'], $_POST['ln'], $_POST['age'], $_POST['ph']);
-                    }
+                if (isset($_POST['pm'])) {
+                    $_SESSION ['member'] = new premium_member($_POST['fn'], $_POST['ln'], $_POST['age'],
+                        $_POST['ph']);
                 }
                 else {
-                    if (isset($_POST['pm'])) {
-                        $_SESSION ['member'] = new premium_member($_POST['fn'], $_POST['ln'], $_POST['age'], $_POST['ph'],
-                            $_POST['g']);
-                    } else {
-                        $_SESSION ['member'] = new member($_POST['fn'], $_POST['ln'], $_POST['age'], $_POST['ph'],
-                            $_POST['g']);
-                    }
+                    $_SESSION ['member'] = new member($_POST['fn'], $_POST['ln'], $_POST['age'], $_POST['ph']);
+                }
+
+                if(isset($_POST['g'])) {
+                    $_SESSION ['member']->setGender($_POST['g']);
                 }
 
                 $f3->reroute('/bio');
             }
-            else
-            {
+
+            else {
                 //instantiate an error array with message
-                if(!validString($_POST['fn'])){
+                if (!validString($_POST['fn'])) {
                     $f3->set("errors['fn']", "true");
                 }
-                if(!validString($_POST['ln'])){
+                if (!validString($_POST['ln'])) {
                     $f3->set("errors['ln']", "true");
                 }
-                if(!validAge($_POST['age'])){
+                if (!validAge($_POST['age'])) {
                     $f3->set("errors['age']", "true");
                 }
-                if(!validPhone($_POST['ph'])){
+                if (!validPhone($_POST['ph'])) {
                     $f3->set("errors['ph']", "true");
                 }
                 $f3->set('fn', $_POST['fn']);
                 $f3->set('ln', $_POST['ln']);
                 $f3->set('age', $_POST['age']);
                 $f3->set('ph', $_POST['ph']);
-                if(isset($_POST['pm'])){
+                if (isset($_POST['pm'])) {
                     $f3->set('pm', $_POST['pm']);
                 }
-                if(isset($_POST['g'])){
+                if (isset($_POST['g'])) {
                     $f3->set('g', $_POST['g']);
                 }
             }
         }
     }
 
-
     public function form2($f3){
+        echo (($_SESSION['member'] instanceof premium_member) == 1) ? 'true' : 'false';
         //check if $POST even exists, then validate
         if (isset($_POST['em'])&&isset($_POST['st'])) {
             //check valid strings and numbers
@@ -107,11 +102,11 @@ class dating_control
                     $_SESSION ['member']->setBio($_POST['bio']);
                 }
 
-                if ($_SESSION ['member'] instanceof premium_member) {
-                    $f3->reroute('/hobbies');
+                if (($_SESSION['member'] instanceof premium_member) == 1) {
+                    $f3->reroute('/profile');
                 }
                 else{
-                    $f3->reroute('/profile');
+                    $f3->reroute('/hobbies');
                 }
             }
             else
@@ -132,7 +127,7 @@ class dating_control
         if (isset($_POST['in']) || isset($_POST['out'])) {
             if (isset($_POST['in'])) {
                 if (validHobby($_POST['in'], $f3->get('in'))) {
-                    $_SESSION['member']->addHobby($_POST['in'], $_SESSION['member']->getIndoorInterests());
+                    array_push($_SESSION['member']->getIndoorInterests(), $_POST['in']);
                 }
                 else{
                     $f3->set("errors['in']", "true");
@@ -140,7 +135,7 @@ class dating_control
             }
             if (isset($_POST['out'])) {
                 if (validHobby($_POST['out'], $f3->get('out'))) {
-                    $_SESSION['member']->addHobby($_POST['out'], $_SESSION['member']->getOutdoorInterests());
+                    array_push($_SESSION['member']->getOutdoorInterests(), $_POST['out']);
                 }
                 else{
                     $f3->set("errors['out']", "true");
@@ -163,16 +158,13 @@ class dating_control
             $inString = $_SESSION['member']->hobbyToString($in);
             $outString = $_SESSION['member']->hobbyToString($out);
 
-            $hobbies = '';
-            $hobbies .= $inString;
-            $hobbies .= "<br>";
-            $hobbies .= $outString;
-
-            $_SESSION['hob'] = $hobbies;
+            $_SESSION['in'] = $inString;
+            $_SESSION['out'] = $outString;
         }
         else{
             $_SESSION['hob'] = $f3->get('opt');
         }
+        echo (($_SESSION['member'] instanceof premium_member) == 1) ? 'true' : 'false';
     }
 
 }

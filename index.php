@@ -43,7 +43,7 @@ $f3->set('states', array('Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California
     'Palau', 'Puerto Rico', 'Virgin Islands'));
 
 //Error array
-$f3->set('errors', array('fn'=>'', 'ln'=>'', 'age'=>'', 'ph'=>'','em'=>'', 'st'=>''));
+$f3->set('errors', array('fn'=>'', 'ln'=>'', 'age'=>'', 'ph'=>'','em'=>'', 'st'=>'', 'in'=>'', 'out'=>''));
 
 //sticky
 $f3->set('fn', '');
@@ -51,7 +51,6 @@ $f3->set('ln', '');
 $f3->set('age', '');
 $f3->set('ph', '');
 $f3->set('g', '');
-$f3->set('pm', '');
 $f3->set('em', '');
 
 //if missing an optional field
