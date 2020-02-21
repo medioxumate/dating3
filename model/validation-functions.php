@@ -48,7 +48,7 @@ function validEmail($email){
  * @param $query
  * @return bool
  */
-function validState($states, $query){
+function validState(array $states, $query){
     $valid = false;
 
     if(in_array($query, $states)){
@@ -59,14 +59,14 @@ function validState($states, $query){
 }
 
 /**
- * @param array $user
+ * @param array $input
  * @param array $array
  * @return bool
  */
-function validHobby(array $user, array $array){
+function validHobby(array $input, array $array){
     $valid = true;
 
-    foreach ($user as $value){
+    foreach ($input as $value){
         if(!in_array($value, $array)){
             $valid = false;
         }

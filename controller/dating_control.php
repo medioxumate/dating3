@@ -79,7 +79,6 @@ class dating_control
     }
 
     public function form2($f3){
-        echo (($_SESSION['member'] instanceof premium_member) == 1) ? 'true' : 'false';
         //check if $POST even exists, then validate
         if (isset($_POST['em'])&&isset($_POST['st'])) {
             //check valid strings and numbers
@@ -101,16 +100,17 @@ class dating_control
                 else{
                     $_SESSION ['member']->setBio($_POST['bio']);
                 }
+                $f3->reroute('/hobbies');
 
-                if (($_SESSION['member'] instanceof premium_member) == 1) {
-                    $f3->reroute('/profile');
-                }
-                else{
+                if ($_SESSION['member'] instanceof premium_member) {
+                    // ["member"]=> object(premium_member)
                     $f3->reroute('/hobbies');
                 }
+                else{
+                   $f3->reroute('/profile');
+                }
             }
-            else
-            {
+            else {
                 //instantiate an error array with message
                 if(!validEmail($_POST['em'])){
                     $f3->set("errors['em']", "true");
@@ -124,47 +124,43 @@ class dating_control
 
     public function form3($f3){
         //check if $POST even exists, then validate
-        if (isset($_POST['in']) || isset($_POST['out'])) {
-            if (isset($_POST['in'])) {
+        if(isset($_POST['in']) || isset($_POST['out'])) {
+            if (!empty($_POST['in'])) {
                 if (validHobby($_POST['in'], $f3->get('in'))) {
-                    array_push($_SESSION['member']->getIndoorInterests(), $_POST['in']);
-                }
-                else{
+                    $_SESSION['member']->setIndoorInterests($_POST['in']);
+                } else {
                     $f3->set("errors['in']", "true");
                 }
             }
-            if (isset($_POST['out'])) {
+            if (!empty($_POST['in'])) {
                 if (validHobby($_POST['out'], $f3->get('out'))) {
-                    array_push($_SESSION['member']->getOutdoorInterests(), $_POST['out']);
-                }
-                else{
+                    foreach ($_POST['out'] as $out) {
+                        $_SESSION['member']->addOutElement($out);
+                    }
+                } else {
                     $f3->set("errors['out']", "true");
                 }
             }
-            if($f3->get("errors['in']") != '' && $f3->get("errors['out']") != ''){
+            if ($f3->get("errors['in']") != '' && $f3->get("errors['out']") != '') {
+                $f3->reroute('/hobbies');
+            } else {
                 $f3->reroute('/profile');
             }
-        }
-        else{
-            $f3->reroute('/profile');
         }
     }
 
     public function profile($f3){
         if($_SESSION['member'] instanceof premium_member) {
-            $in = $_SESSION['member']->getIndoorInterests();
-            $out = $_SESSION['member']->getOutdoorInterests();
-
-            $inString = $_SESSION['member']->hobbyToString($in);
-            $outString = $_SESSION['member']->hobbyToString($out);
+            var_dump($_SESSION['member']);
+            $inString = $_SESSION['member']->hobbyToString($_SESSION['member']->getIndoorInterests());
+            $outString = $_SESSION['member']->hobbyToString($_SESSION['member']->getOutdoorInterests());
 
             $_SESSION['in'] = $inString;
             $_SESSION['out'] = $outString;
         }
         else{
-            $_SESSION['hob'] = $f3->get('opt');
+            $_SESSION['in'] = $f3->get('opt');
         }
-        echo (($_SESSION['member'] instanceof premium_member) == 1) ? 'true' : 'false';
     }
 
 }

@@ -178,14 +178,14 @@ class premium_member extends member
      * @param array $indoorInterests
      */
     public function setIndoorInterests($indoorInterests){
-        $this->_indoorInterests = $indoorInterests;
+        $this->_indoorInterests = array_replace($this->getIndoorInterests(), $indoorInterests);
     }
 
     /**
      * @param array $outdoorInterests
      */
     public function setOutdoorInterests($outdoorInterests){
-        $this->_outdoorInterests = $outdoorInterests;
+        $this->_outdoorInterests = array_replace($this->getOutdoorInterests(), $outdoorInterests);
     }
 
 

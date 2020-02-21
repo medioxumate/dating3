@@ -20,6 +20,7 @@ require('controller/dating_control.php');
 
 //Session
 session_start();
+//var_dump($_SESSION);
 
 //Create an instance of the Base class
 $f3 = Base::instance();
@@ -102,7 +103,7 @@ $f3->route('GET|POST /hobbies', function($f3) {
     echo $view->render('views/form3.html');
 });
 
-$f3->route('GET /profile', function($f3) {
+$f3->route('GET|POST /profile', function($f3) {
 
     $f3->set('title', 'profile');
 
