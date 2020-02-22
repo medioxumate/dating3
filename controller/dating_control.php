@@ -128,22 +128,25 @@ class dating_control
             if (!empty($_POST['in'])) {
                 if (validHobby($_POST['in'], $f3->get('in'))) {
                     $_SESSION['member']->setIndoorInterests($_POST['in']);
-                } else {
+                }
+                else {
                     $f3->set("errors['in']", "true");
                 }
             }
-            if (!empty($_POST['in'])) {
+            if (!empty($_POST['out'])) {
                 if (validHobby($_POST['out'], $f3->get('out'))) {
-                    foreach ($_POST['out'] as $out) {
-                        $_SESSION['member']->addOutElement($out);
+                    if (validHobby($_POST['out'], $f3->get('out'))) {
+                        $_SESSION['member']->setOutdoorInterests($_POST['out']);
                     }
-                } else {
+                }
+                else {
                     $f3->set("errors['out']", "true");
                 }
             }
-            if ($f3->get("errors['in']") != '' && $f3->get("errors['out']") != '') {
+            if ($f3->get("errors['in']") == 'true' || $f3->get("errors['out']") == 'true') {
                 $f3->reroute('/hobbies');
-            } else {
+            }
+            else {
                 $f3->reroute('/profile');
             }
         }

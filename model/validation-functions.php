@@ -65,7 +65,6 @@ function validState(array $states, $query){
  */
 function validHobby(array $input, array $array){
     $valid = true;
-
     foreach ($input as $value){
         if(!in_array($value, $array)){
             $valid = false;

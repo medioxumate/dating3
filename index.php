@@ -20,7 +20,7 @@ require('controller/dating_control.php');
 
 //Session
 session_start();
-//var_dump($_SESSION);
+
 
 //Create an instance of the Base class
 $f3 = Base::instance();

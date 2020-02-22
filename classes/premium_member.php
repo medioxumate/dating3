@@ -185,7 +185,7 @@ class premium_member extends member
      * @param array $outdoorInterests
      */
     public function setOutdoorInterests($outdoorInterests){
-        $this->_outdoorInterests = array_replace($this->getOutdoorInterests(), $outdoorInterests);
+        $this->_outdoorInterests = $outdoorInterests;
     }
 
 
