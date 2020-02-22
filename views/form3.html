@@ -22,12 +22,17 @@
                                     <repeat group="{{ @in }}" value="{{ @inOption }}">
                                         <div class="col-3">
                                             <label><input type="checkbox" name="in[]" value="{{ @inOption }}"
-                                                <check if="{{ empty(@in) && in_array(@inOption, @in) }}">
+                                                <check if="{{ empty(@in) && !in_array(@inOption, @in) }}">
                                                     checked="checked"
                                                 </check>>
                                                 {{ @inOption }}</label>
                                         </div>
                                     </repeat>
+                                    <check if="{{ @errors['in'] =='true' }}">
+                                        <div class="alert alert-danger" role="alert">
+                                            *Bad. No spoofing.
+                                        </div>
+                                    </check>
                                 </div>
                             </div>
                         </div><!--end row 1-->
@@ -39,13 +44,18 @@
                                 <repeat group="{{ @out }}" value="{{ @outOption }}">
                                     <div class="col-3">
                                         <label><input type="checkbox" name="out[]" value="{{ @outOption }}"
-                                            <check if="{{ empty(@out) && in_array(@outOption, @out) }}">
+                                            <check if="{{ !empty(@out) && !in_array(@outOption, @out) }}">
                                                 checked="checked"
                                             </check>>
                                             {{ @outOption }}
                                         </label>
                                     </div>
                                 </repeat>
+                                <check if="{{ @errors['out'] =='true' }}">
+                                    <div class="alert alert-danger" role="alert">
+                                        *Bad. No spoofing.
+                                    </div>
+                                </check>
                             </div>
                         </div>
                     </div><!-- end row 2-->
