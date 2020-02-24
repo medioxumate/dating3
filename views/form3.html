@@ -19,23 +19,26 @@
                         <div class="col form-group">
                             <p><b>In-door Interests</b> <em>*Optional</em></p>
                             <div class ="row justify-content-around">
-                                    <repeat group="{{ @in }}" value="{{ @inOption }}">
-                                        <div class="col-3">
-                                            <label><input type="checkbox" name="in[]" value="{{ @inOption }}"
-                                                <check if="{{ empty(@in) && !in_array(@inOption, @in) }}">
+                                <repeat group="{{ @in }}" value="{{ @inOption }}">
+                                    <div class="col-3">
+                                        <label><input type="checkbox" name="in[]" value="{{ @inOption }}"
+                                            <check if="{{ @userIn != null }}">
+                                                <check if="{{in_array(@inOption, @userIn)}}">
                                                     checked="checked"
-                                                </check>>
-                                                {{ @inOption }}</label>
-                                        </div>
-                                    </repeat>
-                                    <check if="{{ @errors['in'] =='true' }}">
-                                        <div class="alert alert-danger" role="alert">
-                                            *Bad. No spoofing.
-                                        </div>
-                                    </check>
-                                </div>
+                                                </check>
+                                            </check>>
+                                            {{ @inOption }}
+                                        </label>
+                                    </div>
+                                </repeat>
+                                <check if="{{ @errors['in'] !='' }}">
+                                    <div class="alert alert-danger" role="alert">
+                                        *Bad. No spoofing.
+                                    </div>
+                                </check>
                             </div>
-                        </div><!--end row 1-->
+                        </div>
+                    </div><!--end row 1-->
 
                     <div class="row"><!--row 2-->
                         <div class="col form-group">
@@ -44,14 +47,16 @@
                                 <repeat group="{{ @out }}" value="{{ @outOption }}">
                                     <div class="col-3">
                                         <label><input type="checkbox" name="out[]" value="{{ @outOption }}"
-                                            <check if="{{ !empty(@out) && !in_array(@outOption, @out) }}">
-                                                checked="checked"
+                                            <check if="{{ @userOut != null }}">
+                                                <check if="{{in_array(@outOption, @userOut)}}">
+                                                    checked="checked"
+                                                </check>
                                             </check>>
                                             {{ @outOption }}
                                         </label>
                                     </div>
                                 </repeat>
-                                <check if="{{ @errors['out'] =='true' }}">
+                                <check if="{{ @errors['out'] !='' }}">
                                     <div class="alert alert-danger" role="alert">
                                         *Bad. No spoofing.
                                     </div>

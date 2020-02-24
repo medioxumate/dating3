@@ -123,27 +123,30 @@ class dating_control
     public function form3($f3){
         //check if $POST even exists, then validate
         if(isset($_POST['in']) || isset($_POST['out'])) {
+            $f3->set('userIn', $_POST['in']);
+            $f3->set('userOut', $_POST['out']);
+
             if(!empty($_POST['in']) || !empty($_POST['out'])) {
-                if (!empty($_POST['in'])) {
+                if ($f3->get('userIn') != null) {
+
                     if (validHobby($_POST['in'], $f3->get('in'))) {
                         $_SESSION['member']->setIndoorInterests($_POST['in']);
                     }
                     else {
-                        $f3->set("errors['in']", "true");
+                        $f3->set("errors['in']", 'true');
                     }
                 }
-                if (!empty($_POST['out'])) {
+                if ($f3->get('userOut') != null) {
+
                     if (validHobby($_POST['out'], $f3->get('out'))) {
-                        if (validHobby($_POST['out'], $f3->get('out'))) {
-                            $_SESSION['member']->setOutdoorInterests($_POST['out']);
-                        }
+                        $_SESSION['member']->setOutdoorInterests($_POST['out']);
                     }
                     else {
-                        $f3->set("errors['out']", "true");
+                        $f3->set("errors['out']", 'true');
                     }
                 }
             }
-            else if(empty($_POST['in']) && empty($_POST['out'])){
+            else{
                 $_SESSION['member']->setIndoorInterests(array($f3->get('opt')));
             }
 
@@ -151,7 +154,7 @@ class dating_control
                 $f3->reroute('/hobbies');
             }
             else{
-                $f3->reroute('/profile');
+                //$f3->reroute('/profile');
             }
         }
     }

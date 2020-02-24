@@ -53,6 +53,8 @@ $f3->set('age', '');
 $f3->set('ph', '');
 $f3->set('g', '');
 $f3->set('em', '');
+$f3->set('userIn', '');
+$f3->set('userOut', '');
 
 //if missing an optional field
 $f3->set('opt', 'Not Given');
@@ -96,6 +98,15 @@ $f3->route('GET|POST /bio', function($f3) {
 $f3->route('GET|POST /hobbies', function($f3) {
 
     $f3->set('title', 'hobbies');
+
+    echo'in <br>';
+    var_dump($f3->get('in'));
+    echo '<br>user input: ';
+    var_dump($_POST['in']);
+    echo'<br> out <br>';
+    var_dump($_POST['out']);
+    echo '<br>user input: ';
+    var_dump($f3->get('userOut'));
 
     $GLOBALS['controller']->form3($f3);
 
