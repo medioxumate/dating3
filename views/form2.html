@@ -21,12 +21,10 @@
                             <div class ="col form-group">
                                 <label><b>Email</b></label>
                                 <input class = "form-control" type ="text" name ="em" value ={{@em}}>
-                                <check if="{{ @errors['em'] =='' }}">
-                                    <false>
-                                        <div class="alert alert-danger" role="alert">
-                                            *email field is empty or invalid. ex: someonecool@domain.com
-                                        </div>
-                                    </false>
+                                <check if="{{ @errors['em'] ==true }}">
+                                    <div class="alert alert-danger" role="alert">
+                                        *email field is empty or invalid. ex: someonecool@domain.com
+                                    </div>
                                 </check>
                             </div>
                         </div><!--end row 1-->

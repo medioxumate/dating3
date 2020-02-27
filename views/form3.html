@@ -31,11 +31,6 @@
                                         </label>
                                     </div>
                                 </repeat>
-                                <check if="{{ @errors['in'] !='' }}">
-                                    <div class="alert alert-danger" role="alert">
-                                        *Bad. No spoofing.
-                                    </div>
-                                </check>
                             </div>
                         </div>
                     </div><!--end row 1-->
@@ -56,12 +51,12 @@
                                         </label>
                                     </div>
                                 </repeat>
-                                <check if="{{ @errors['out'] !='' }}">
-                                    <div class="alert alert-danger" role="alert">
-                                        *Bad. No spoofing.
-                                    </div>
-                                </check>
                             </div>
+                            <check if="{{ @errors['in'] ==true || @errors['out'] ==true}}">
+                                <div class="alert alert-danger" role="alert">
+                                    *Bad. No spoofing.
+                                </div>
+                            </check>
                         </div>
                     </div><!-- end row 2-->
                 </div>

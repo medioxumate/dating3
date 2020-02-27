@@ -44,7 +44,8 @@ $f3->set('states', array('Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California
     'Palau', 'Puerto Rico', 'Virgin Islands'));
 
 //Error array
-$f3->set('errors', array('fn'=>'', 'ln'=>'', 'age'=>'', 'ph'=>'','em'=>'', 'st'=>'', 'in'=>'', 'out'=>''));
+$f3->set('errors', array('fn'=>false, 'ln'=>false, 'age'=>false, 'ph'=>false,'em'=>false, 'st'=>false, 'in'=>false,
+    'out'=>false));
 
 //sticky
 $f3->set('fn', '');
@@ -76,42 +77,23 @@ $f3->route('GET /', function($f3){
 $f3->route('GET|POST /Sign-up', function($f3) {
     $f3->set('title', 'Sign up');
 
-    //display a views
-    $view = new Template();
-
     $GLOBALS['controller']->form1($f3);
-
-    echo $view->render('views/form1.html');
 });
 
 $f3->route('GET|POST /bio', function($f3) {
 
     $f3->set('title', 'Biography');
 
-    $view = new Template();
-
     $GLOBALS['controller']->form2($f3);
 
-    echo $view->render('views/form2.html');
 });
 
 $f3->route('GET|POST /hobbies', function($f3) {
 
     $f3->set('title', 'hobbies');
 
-    echo'in <br>';
-    var_dump($f3->get('in'));
-    echo '<br>user input: ';
-    var_dump($_POST['in']);
-    echo'<br> out <br>';
-    var_dump($_POST['out']);
-    echo '<br>user input: ';
-    var_dump($f3->get('userOut'));
-
     $GLOBALS['controller']->form3($f3);
 
-    $view = new Template();
-    echo $view->render('views/form3.html');
 });
 
 $f3->route('GET|POST /profile', function($f3) {

@@ -22,12 +22,10 @@
                                 <div class ="col form-group">
                                     <label><b>First Name</b></label>
                                     <input class = "form-control" type ="text" name ="fn" value ={{@fn}}>
-                                    <check if="{{ @errors['fn'] =='' }}">
-                                        <false>
-                                            <div class="alert alert-danger" role="alert">
-                                                *First name field is empty or invalid.
-                                            </div>
-                                        </false>
+                                    <check if="{{ @errors['fn'] ==true }}">
+                                        <div class="alert alert-danger" role="alert">
+                                            *First name field is empty or invalid.
+                                        </div>
                                     </check>
                                 </div>
                             </div><!-- end row 1-->
@@ -36,12 +34,10 @@
                                 <div class ="col form-group">
                                     <label><b>Last Name</b></label>
                                     <input class = "form-control" type ="text" name ="ln" value ={{@ln}}>
-                                    <check if="{{ @errors['ln'] =='' }}">
-                                        <false>
-                                            <div class="alert alert-danger" role="alert">
-                                                *Last name field is empty or invalid.
-                                            </div>
-                                        </false>
+                                    <check if="{{ @errors['ln'] ==true }}">
+                                        <div class="alert alert-danger" role="alert">
+                                            *Last name field is empty or invalid.
+                                        </div>
                                     </check>
                                 </div>
                             </div><!--end row 2-->
@@ -50,12 +46,10 @@
                                 <div class ="col form-group">
                                     <label><b>Age</b></label>
                                     <input class = "form-control" type ="text" name ="age" value ={{@age}}>
-                                    <check if="{{ @errors['age'] =='' }}">
-                                        <false>
-                                            <div class="alert alert-danger" role="alert">
-                                                *Age field is empty or invalid. Age should be between 18 and 118.
-                                            </div>
-                                        </false>
+                                    <check if="{{ @errors['age'] ==true }}">
+                                        <div class="alert alert-danger" role="alert">
+                                            *Age field is empty or invalid. Age should be between 18 and 118.
+                                        </div>
                                     </check>
                                 </div>
                             </div><!--end row 3-->
@@ -74,12 +68,10 @@
                                 <div class="col form-group">
                                     <label><b>Phone Number</b></label>
                                     <input class = "form-control" type ="text" name ="ph" value ={{@ph}}>
-                                    <check if="{{ @errors['ph'] =='' }}">
-                                        <false>
-                                            <div class="alert alert-danger" role="alert">
-                                                *invalid phone number. ex: 999-999-9999
-                                            </div>
-                                        </false>
+                                    <check if="{{ @errors['ph'] ==true }}">
+                                        <div class="alert alert-danger" role="alert">
+                                            *invalid phone number. ex: 999-999-9999
+                                        </div>
                                     </check>
                                 </div>
                             </div><!--end row 5-->
